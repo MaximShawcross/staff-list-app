@@ -5,7 +5,7 @@ const  AppFilter = () =>{
         <div className="btn-group">
             <button className="btn btn-light"
             type = "button">
-                Все сотрудники
+                Все сотрудникиa
             </button>
             <button className="btn btn-outline-light"
             type = "button">

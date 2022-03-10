@@ -1,0 +1,23 @@
+import "./staff-add-form.css"
+
+const StaffAddForm = () =>{
+    return(
+        <div className="app-add-form">
+            <h3>Добавить нового сотрудника</h3>
+            <form 
+                className="add-form d-flex">
+                <input type="text" 
+                    className="form-contor new-post-label" 
+                    placeholder="Как его зовут?"/>
+                <input type="number" 
+                    className="form-contor new-post-label" 
+                    placeholder="З/П в $?"/>
+
+                <button type="submit"
+                    className ="btn btn-outline-light">Добавить</button>
+            </form>
+        </div>
+    )
+}
+
+export default StaffAddForm;
