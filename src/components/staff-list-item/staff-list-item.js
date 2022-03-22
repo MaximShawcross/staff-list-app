@@ -6,7 +6,7 @@ class StaffListItem extends Component{
         super(props);
         this.state = {
             increase: false,
-            promotion: false
+            rise: false
         }
     }
 
@@ -16,28 +16,28 @@ class StaffListItem extends Component{
         }))
     }
 
-    onPromotion = () => {
-        this.setState(({promotion}) => ({
-            promotion: !promotion
+    onRise = () => {
+        this.setState(({rise}) => ({
+            rise: !rise
         }))
     }
     
     render(){
-        const {name, salary} = this.props;
-        const {increase, promotion} = this.state;
+        const {name, salary, onDelete} = this.props;
+        const {increase, rise} = this.state;
 
         let classNames = "list-group-item d-flex justify-content-beetwen"
     
         if(increase){
             classNames += " increase" ;
         }
-        if(promotion){
+        if(rise){
             classNames +=" like"
         }
 
         return(
             <li className={classNames}>
-                <span onClick={this.onPromotion} className="list-group-item-label">{name}</span>
+                <span onClick={this.onRise} className="list-group-item-label">{name}</span>
                 <input type="text" className="list-group-item-input" defaultValue ={salary}/>
                 <div className="d-flex justify-content-center align-items-center">
                     <button type="button" 
@@ -47,9 +47,11 @@ class StaffListItem extends Component{
                     </button>
 
                     <button type="button" 
-                        className="btn-trash btn-sm">
-                        <i className="fas fa-trash"></i>
+                        className="btn-trash btn-sm"
+                        onClick = {onDelete}>
+                        <i className="fas fa-trash"> </i>
                     </button>
+
                     <i className="fas fa-star"></i>
                 </div>
             </li>   
