@@ -17,22 +17,31 @@ class App extends Component{
                 {name: "Jhon Crammer", salary: 1000, increase: false, id:1},
                 {name: "Victor But", salary: 1500, increase: true, id:2},
                 {name: "Lector Gannibal", salary: 2000, increase: false, id:3},
-            ]
+            ],
         }
+        
+        this.maxId = 3;
     }
 
-    deleteItem = (id) =>{
+    deletePreson = (id) =>{
         this.setState(({data}) => {
-            // const index = data.findIndex(item => item.id == id);
-            
-            // const dataClone = JSON.parse(JSON.stringify(data));
-            // dataClone.splice(index, 1)
-
             return{
                 data: data.filter(item => item.id !== id),
             }            
         })
     }
+
+    addPerson = (name, salary) => {
+        this.maxId = this.maxId + 1
+
+        this.setState(({data}) => {
+            let newUser = {name: name, salary: salary, id: this.maxId}
+            return {
+                data: [...data, newUser]
+            }
+        })
+    }
+
 
     render(){
         return(
@@ -45,10 +54,11 @@ class App extends Component{
             </div>
         
             <StaffList 
-                data={this.state.data}
-                onDelete = {this.deleteItem}/>
+                data = {this.state.data}
+                deletePerson = {this.deletePreson}/>
 
-            <StaffAddForm/>
+            <StaffAddForm
+                addPerson = {this.addPerson}/>
         </div>)
     }    
 }

@@ -18,6 +18,7 @@ class StaffAddForm extends Component {
     }
 
     render() {
+        const {addPerson} = this.props;
         const {name, salary} = this.state;
 
         return(
@@ -39,7 +40,9 @@ class StaffAddForm extends Component {
                         onChange={this.onValueChange}/>
     
                     <button type="submit"
-                        className ="btn btn-outline-light">Добавить</button>
+                        className ="btn btn-outline-light"
+                        onClick = {(e) => {e.preventDefault(); addPerson(name, salary)}}
+                        >Добавить</button>
                 </form>
             </div>
         )

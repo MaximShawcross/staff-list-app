@@ -1,5 +1,6 @@
-import './staff-list-item.css';
 import {Component} from 'react';
+
+import './staff-list-item.css';
 
 class StaffListItem extends Component{
     constructor(props){
@@ -16,18 +17,18 @@ class StaffListItem extends Component{
         }))
     }
 
-    onRise = () => {
+    onRise = () => {    
         this.setState(({rise}) => ({
             rise: !rise
         }))
     }
     
     render(){
-        const {name, salary, onDelete} = this.props;
+        const {name, salary, deletePerson} = this.props;
         const {increase, rise} = this.state;
 
         let classNames = "list-group-item d-flex justify-content-beetwen"
-    
+        
         if(increase){
             classNames += " increase" ;
         }
@@ -48,7 +49,7 @@ class StaffListItem extends Component{
 
                     <button type="button" 
                         className="btn-trash btn-sm"
-                        onClick = {onDelete}>
+                        onClick = {deletePerson}>
                         <i className="fas fa-trash"> </i>
                     </button>
 
