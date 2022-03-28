@@ -9,18 +9,18 @@ import StaffAddForm from '../staff-add-form/staff-add-form';
 import './app.css';
 
 
-class App extends Component{
+class App extends Component {
     constructor(props){
         super(props);
         this.state = {
             data: [
-                {name: "Jhon Crammer", salary: 1000, increase: false, id:1},
-                {name: "Victor But", salary: 1500, increase: true, id:2},
-                {name: "Lector Gannibal", salary: 2000, increase: false, id:3},
+                {name: "Jhon Crammer", salary: 1000, increase: false, rise: true, id:1},
+                {name: "Victor But", salary: 1500, increase: true, rise: false, id:2},
+                {name: "Lector Gannibal", salary: 2000, increase: false, rise: false, id:3},
             ],
         }
-        
-        this.maxId = 3;
+
+        this.maxId = 4;
     }
 
     deletePreson = (id) =>{
@@ -29,24 +29,62 @@ class App extends Component{
                 data: data.filter(item => item.id !== id),
             }            
         })
+
     }
 
     addPerson = (name, salary) => {
-        this.maxId = this.maxId + 1
+        const newUser = {
+            name: name, 
+            salary: salary, 
+            increase: false, 
+            rise: false,
+            id: this.maxId++
+        }
 
         this.setState(({data}) => {
-            let newUser = {name: name, salary: salary, id: this.maxId}
+            const newData = [...data, newUser];
+
             return {
-                data: [...data, newUser]
+                data: newData
             }
+
         })
+    }
+
+    onToggleIncrease = (id) => {
+        this.setState(({data}) => ({
+            data: data.map(item => {
+                if(item.id === id){
+                    return {...item, increase: !item.increase}
+                }
+
+                return item;    
+            })
+        }))
+    }
+
+    onToggleRise = (id) => {
+        this.setState(({data}) => ({
+            data: data.map(item => {
+                if(item.id === id){
+                    return {...item, rise: !item.rise}
+                }
+
+                return item;    
+            })
+        }))
     }
 
 
     render(){
+        const staffs = this.state.data.length;
+        const increased = this.state.data.filter(item => item.increase).length;
+
         return(
         <div className="app">
-            <AppInfo/>
+            <AppInfo
+            staffs = {staffs}
+            increased ={increased}/>
 
             <div className="search-panel">
                 <SearchPanel/>
@@ -55,7 +93,9 @@ class App extends Component{
         
             <StaffList 
                 data = {this.state.data}
-                deletePerson = {this.deletePreson}/>
+                deletePerson = {this.deletePreson}
+                onToggleIncrease = {this.onToggleIncrease}
+                onToggleRise = {this.onToggleRise}/>
 
             <StaffAddForm
                 addPerson = {this.addPerson}/>
