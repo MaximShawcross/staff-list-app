@@ -18,6 +18,7 @@ class StaffAddForm extends Component {
     }
 
     onSubmitForm = (event) =>{
+        // if (this.state.name.length < 3 || !this.state.salary) return;
         event.preventDefault();
         this.props.addPerson(this.state.name, this.state.salary);
 

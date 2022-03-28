@@ -2,7 +2,7 @@ import StaffListItem from "../staff-list-item/staff-list-item";
 
 import './staff-list.css';
 
-const StaffList = ({data, deletePerson, onToggleIncrease, onToggleRise}) =>{
+const StaffList = ({data, deletePerson, onToggleProp}) =>{
     
     const elements = data.map((item) => {
         const {id, ...itemProps} = item;
@@ -11,8 +11,7 @@ const StaffList = ({data, deletePerson, onToggleIncrease, onToggleRise}) =>{
                 key={id} 
                 {...itemProps}
                 deletePerson ={() => deletePerson(id)}
-                onToggleIncrease = {() => onToggleIncrease(id)}
-                onToggleRise = {() => onToggleRise(id)}/> /* name ={prop.name} salary = {prop.salary} */
+                onToggleProp = {e => onToggleProp(id, e.currentTarget.getAttribute("data-toggle"))}/> /* name ={prop.name} salary = {prop.salary} */
         )
     });
     
