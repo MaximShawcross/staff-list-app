@@ -2,7 +2,7 @@ import StaffListItem from "../staff-list-item/staff-list-item";
 
 import './staff-list.css';
 
-const StaffList = ({data, deletePerson, onToggleProp}) =>{
+const StaffList = ({data, deletePerson, onToggleProp, onUpdateInputValue}) =>{
     
     const elements = data.map((item) => {
         const {id, ...itemProps} = item;

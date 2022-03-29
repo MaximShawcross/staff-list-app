@@ -14,15 +14,15 @@ class App extends Component {
         super(props);
         this.state = {
             data: [
-                {name: "Jhon Crammer", salary: 1000, increase: false, rise: true, id:1},
-                {name: "Victor But", salary: 1500, increase: true, rise: false, id:2},
-                {name: "Lector Gannibal", salary: 2000, increase: false, rise: false, id:3},
+                {name: "Jhon Crammer", salary: 1000, increase: false, rise: true, id:0},
+                {name: "Victor But", salary: 1500, increase: true, rise: false, id:1},
+                {name: "Lector Gannibal", salary: 2000, increase: false, rise: false, id:2},
             ],
             term : '',
             filter: 'every'
         }
 
-        this.maxId = 4;
+        this.maxId = 3;
     }
 
     deletePreson = (id) =>{
@@ -98,6 +98,7 @@ class App extends Component {
         this.setState({filter});
     }
 
+
     render(){
         const {data, term, filter} = this.state;
         const staffs = this.state.data.length;
@@ -115,7 +116,7 @@ class App extends Component {
                 <AppFilter
                     filter = {filter}
                     onFilterSelect = {this.onFilterSelect}/>
-            </div>
+            </div>  
         
             <StaffList 
                 data = {visibleData}
